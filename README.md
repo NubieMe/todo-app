@@ -298,3 +298,30 @@ Response Body (Failed) :
     "errors": "cannot update others todo"
 }
 ```
+
+### Delete Todo
+
+-   Endpoint : `/api/todo/:id`
+-   Method : `DELETE`
+-   Request Param : `id`=`1`
+-   Request Header : `Bearer tokeneojq391uy8qtw7gy`
+-   Response Body (Success) :
+
+```json
+{
+    "message": "delete todo success",
+    "data": {
+        "todo": "cleaning desk after work",
+        "username": "tatang",
+        "category": "work"
+    }
+}
+```
+
+-   Response Body (Failed) :
+
+```json
+{
+    "errors": "cannot delete others todo"
+}
+```
