@@ -1,6 +1,7 @@
 import express from "express";
 import { UserController } from "../controllers/user-controller";
 import { CategoryController } from "../controllers/category-controller";
+import { TodoController } from "../controllers/todo-controller";
 
 export const routes = express.Router();
 
@@ -12,3 +13,6 @@ routes.post("/api/login", UserController.login);
 routes.post("/api/category", CategoryController.create);
 routes.get("/api/category", CategoryController.getAll);
 routes.delete("/api/category/:id", CategoryController.delete);
+
+// Todo
+routes.post("/api/todo", TodoController.create);
