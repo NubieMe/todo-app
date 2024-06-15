@@ -2,6 +2,7 @@ import { Category, Todo, User } from "@prisma/client";
 
 export type TodoRequest = {
     todo: string;
+    username: string;
     categoryId: number;
 };
 
@@ -12,11 +13,11 @@ export type TodoResponse = {
     category: string;
 };
 
-export function toTodoResponse(todo: Todo, user: User, category: Category): TodoResponse {
+export function toTodoResponse(todo: Todo, category: Category): TodoResponse {
     return {
         id: todo.id,
         todo: todo.todo,
-        username: user.username,
+        username: todo.username,
         category: category.name,
     };
 }
