@@ -1,8 +1,12 @@
 import express from "express";
-import { UserService } from "../services/user-service";
 import { UserController } from "../controllers/user-controller";
+import { CategoryController } from "../controllers/category-controller";
 
 export const routes = express.Router();
 
-routes.post("/api/register", UserService.register);
+// User
+routes.post("/api/register", UserController.register);
 routes.post("/api/login", UserController.login);
+
+// Category
+routes.post("/api/category", CategoryController.create);
