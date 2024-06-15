@@ -5,7 +5,7 @@ import { ResponseError } from "../errors/response-error";
 export async function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
     if (err instanceof ZodError) {
         res.status(400).json({
-            errors: `Validation Error: ${err.message}`,
+            errors: err.issues[0].message,
         });
     } else if (err instanceof ResponseError) {
         res.status(err.status).json({
