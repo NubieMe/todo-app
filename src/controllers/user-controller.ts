@@ -16,4 +16,18 @@ export class UserController {
             next();
         }
     }
+
+    static async login(req: Request, res: Response, next: NextFunction) {
+        try {
+            const request = req.body as UserRequest;
+            const response = await UserService.login(request);
+
+            res.status(200).json({
+                message: "login success",
+                data: response,
+            });
+        } catch (error) {
+            next();
+        }
+    }
 }
