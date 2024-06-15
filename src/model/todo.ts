@@ -1,5 +1,3 @@
-import { Category, Todo, User } from "@prisma/client";
-
 export type TodoRequest = {
     todo: string;
     username: string;
@@ -26,6 +24,11 @@ export type TodoDB = {
         id: number;
         name: string;
     };
+};
+
+export type TodoDelete = {
+    id: number;
+    username: string;
 };
 
 export function toTodoResponse(todo: TodoDB): TodoResponse {
