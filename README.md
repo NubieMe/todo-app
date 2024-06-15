@@ -132,6 +132,7 @@ Response Body (Failed) :
 {
     "message": "delete category success",
     "data": {
+        "id": 1,
         "name": "work"
     }
 }
@@ -311,6 +312,7 @@ Response Body (Failed) :
 {
     "message": "delete todo success",
     "data": {
+        "id": 1,
         "todo": "cleaning desk after work",
         "username": "tatang",
         "category": "work"
