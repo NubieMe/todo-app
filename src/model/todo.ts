@@ -18,11 +18,21 @@ export type GetTodoRequest = {
     categoryId?: number;
 };
 
-export function toTodoResponse(todo: Todo, category: Category): TodoResponse {
+export type TodoDB = {
+    id: number;
+    todo: string;
+    username: string;
+    category: {
+        id: number;
+        name: string;
+    };
+};
+
+export function toTodoResponse(todo: TodoDB): TodoResponse {
     return {
         id: todo.id,
         todo: todo.todo,
         username: todo.username,
-        category: category.name,
+        category: todo.category.name,
     };
 }
