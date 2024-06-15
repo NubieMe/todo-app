@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { TodoService } from "../services/todo-service";
-import { GetTodoRequest, TodoRequest } from "../model/todo";
+import { GetTodoRequest, TodoDelete, TodoRequest } from "../model/todo";
 import { ParamsRequest } from "../model";
 
 export class TodoController {
@@ -36,13 +36,30 @@ export class TodoController {
     static async update(req: Request, res: Response, next: NextFunction) {
         try {
             const request = req.body;
-            request.username = res.locals.session;
+            request.username = res.locals.session.username;
 
             const params = req.params as unknown as ParamsRequest;
             const response = await TodoService.update(request as TodoRequest, params);
 
             res.status(200).json({
                 message: "update todo success",
+                data: response,
+            });
+        } catch (error) {
+            next();
+        }
+    }
+
+    static async delete(req: Request, res: Response, next: NextFunction) {
+        try {
+            const request = {
+                id: req.params.id,
+                username: res.locals.session.username,
+            } as unknown as TodoDelete;
+            const response = await TodoService.delete(request);
+
+            res.status(200).json({
+                message: "delete todo success",
                 data: response,
             });
         } catch (error) {

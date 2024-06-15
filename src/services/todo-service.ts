@@ -1,7 +1,7 @@
 import { Category, Todo } from "@prisma/client";
 import { prismaClient } from "../database/prisma";
 import { ResponseError } from "../errors/response-error";
-import { GetTodoRequest, TodoDB, TodoRequest, TodoResponse, toTodoResponse } from "../model/todo";
+import { GetTodoRequest, TodoDB, TodoDelete, TodoRequest, TodoResponse, toTodoResponse } from "../model/todo";
 import { createTodoRequest } from "../validation/todo-validation";
 import { validate } from "../validation/validate";
 import { ParamsRequest } from "../model";
@@ -76,5 +76,31 @@ export class TodoService {
         });
 
         return toTodoResponse(updated);
+    }
+
+    static async delete(req: TodoDelete): Promise<TodoResponse> {
+        const todo = await prismaClient.todo.findUnique({
+            where: {
+                id: req.id,
+            },
+        });
+
+        if (!todo) throw new ResponseError(400, "todo not found");
+
+        if (todo.username !== req.username) throw new ResponseError(400, "cannot delete others todo");
+
+        const deleted = await prismaClient.todo.delete({
+            where: {
+                id: req.id,
+            },
+            select: {
+                id: true,
+                todo: true,
+                username: true,
+                category: true,
+            },
+        });
+
+        return toTodoResponse(deleted);
     }
 }
