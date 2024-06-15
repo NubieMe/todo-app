@@ -16,3 +16,4 @@ routes.delete("/api/category/:id", CategoryController.delete);
 
 // Todo
 routes.post("/api/todo", TodoController.create);
+routes.get("/api/todo", TodoController.getTodo);
