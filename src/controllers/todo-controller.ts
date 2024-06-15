@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { TodoService } from "../services/todo-service";
 import { GetTodoRequest, TodoRequest } from "../model/todo";
+import { ParamsRequest } from "../model";
 
 export class TodoController {
     static async create(req: Request, res: Response, next: NextFunction) {
@@ -25,6 +26,23 @@ export class TodoController {
 
             res.status(200).json({
                 message: "get todo success",
+                data: response,
+            });
+        } catch (error) {
+            next();
+        }
+    }
+
+    static async update(req: Request, res: Response, next: NextFunction) {
+        try {
+            const request = req.body;
+            request.username = res.locals.session;
+
+            const params = req.params as unknown as ParamsRequest;
+            const response = await TodoService.update(request as TodoRequest, params);
+
+            res.status(200).json({
+                message: "update todo success",
                 data: response,
             });
         } catch (error) {
