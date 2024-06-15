@@ -11,3 +11,4 @@ routes.post("/api/login", UserController.login);
 // Category
 routes.post("/api/category", CategoryController.create);
 routes.get("/api/category", CategoryController.getAll);
+routes.delete("/api/category/:id", CategoryController.delete);
