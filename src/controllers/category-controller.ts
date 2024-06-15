@@ -16,4 +16,17 @@ export class CategoryController {
             next();
         }
     }
+
+    static async getAll(req: Request, res: Response, next: NextFunction) {
+        try {
+            const response = await CategoryService.getAll();
+
+            res.status(200).json({
+                message: "get all category success",
+                data: response,
+            });
+        } catch (error) {
+            next();
+        }
+    }
 }

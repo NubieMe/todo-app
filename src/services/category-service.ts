@@ -22,4 +22,8 @@ export class CategoryService {
 
         return toCategoryResponse(category);
     }
+
+    static async getAll(): Promise<CategoryResponse[]> {
+        return await prismaClient.category.findMany();
+    }
 }
