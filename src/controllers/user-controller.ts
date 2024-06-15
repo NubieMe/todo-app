@@ -13,7 +13,7 @@ export class UserController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 
@@ -27,7 +27,7 @@ export class UserController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 }

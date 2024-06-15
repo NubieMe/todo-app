@@ -14,7 +14,7 @@ export class CategoryController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 
@@ -27,7 +27,7 @@ export class CategoryController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 
@@ -41,7 +41,7 @@ export class CategoryController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 }

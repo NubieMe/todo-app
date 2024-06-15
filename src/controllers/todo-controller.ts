@@ -15,7 +15,7 @@ export class TodoController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 
@@ -29,7 +29,7 @@ export class TodoController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 
@@ -46,7 +46,7 @@ export class TodoController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 
@@ -63,7 +63,7 @@ export class TodoController {
                 data: response,
             });
         } catch (error) {
-            next();
+            next(error);
         }
     }
 }
