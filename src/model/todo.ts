@@ -13,6 +13,11 @@ export type TodoResponse = {
     category: string;
 };
 
+export type GetTodoRequest = {
+    username?: string;
+    categoryId?: number;
+};
+
 export function toTodoResponse(todo: Todo, category: Category): TodoResponse {
     return {
         id: todo.id,
