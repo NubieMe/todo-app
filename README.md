@@ -73,6 +73,7 @@ Response Body (Failed) :
 
 -   Endpoint : `/api/category`
 -   Method : `POST`
+-   Request Header : `Bearer tokenjewu8r2y7gyfhaj`
 -   Request Body :
 
 ```json
@@ -126,6 +127,7 @@ Response Body (Failed) :
 -   Endpoint : `/api/category/:id`
 -   Method : `DELETE`
 -   Request Param : `id`=`1`
+-   Request Header : `Bearer tokenkajiq83y17td6wftsgvh`
 -   Response Body (Success) :
 
 ```json
