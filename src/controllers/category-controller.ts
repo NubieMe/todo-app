@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { CategoryRequest } from "../model/category";
 import { CategoryService } from "../services/category-service";
-import { ParamsRequest } from "../model";
 
 export class CategoryController {
     static async create(req: Request, res: Response, next: NextFunction) {
@@ -33,7 +32,9 @@ export class CategoryController {
 
     static async delete(req: Request, res: Response, next: NextFunction) {
         try {
-            const request = req.params as unknown as ParamsRequest;
+            const request = {
+                id: Number(req.params.id),
+            };
             const response = await CategoryService.delete(request);
 
             res.status(200).json({
