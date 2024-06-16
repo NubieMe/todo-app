@@ -16,7 +16,7 @@ export class TodoService {
             },
         });
 
-        if (isCategoryExist != 0) throw new ResponseError(400, "category not found");
+        if (isCategoryExist === 0) throw new ResponseError(400, "category not found");
 
         const todo = await prismaClient.todo.create({
             data: req,
@@ -56,13 +56,13 @@ export class TodoService {
 
         if (todo.username !== validated.username) throw new ResponseError(400, "cannot update others todo");
 
-        const category = await prismaClient.category.findUnique({
+        const category = await prismaClient.category.count({
             where: {
                 id: validated.categoryId,
             },
         });
 
-        if (!category) throw new ResponseError(400, "category not found");
+        if (category === 0) throw new ResponseError(400, "category not found");
 
         const updated = await prismaClient.todo.update({
             where: todoId,

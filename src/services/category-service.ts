@@ -33,7 +33,15 @@ export class CategoryService {
             where: req,
         });
 
-        if (category != 0) throw new ResponseError(400, "category not found");
+        if (category === 0) throw new ResponseError(400, "category not found");
+
+        const isCategoryInUse = await prismaClient.todo.count({
+            where: {
+                categoryId: req.id,
+            },
+        });
+
+        if (isCategoryInUse != 0) throw new ResponseError(400, "category in used by todo");
 
         return await prismaClient.category.delete({
             where: req,
