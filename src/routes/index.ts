@@ -16,7 +16,7 @@ routes.get("/category", CategoryController.getAll);
 routes.delete("/category/:id", CategoryController.delete);
 
 // Todo
-routes.post("/todo", TodoController.create);
+routes.post("/todo", auth, TodoController.create);
 routes.get("/todo", TodoController.getTodo);
 routes.put("/todo/:id", auth, TodoController.update);
 routes.delete("/todo/:id", auth, TodoController.delete);
