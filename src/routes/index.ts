@@ -11,9 +11,9 @@ routes.post("/register", UserController.register);
 routes.post("/login", UserController.login);
 
 // Category
-routes.post("/category", CategoryController.create);
+routes.post("/category", auth, CategoryController.create);
 routes.get("/category", CategoryController.getAll);
-routes.delete("/category/:id", CategoryController.delete);
+routes.delete("/category/:id", auth, CategoryController.delete);
 
 // Todo
 routes.post("/todo", auth, TodoController.create);
